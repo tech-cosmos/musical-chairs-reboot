@@ -1,6 +1,7 @@
 import type { Game, UseGameApi } from "@api/chairs/v1/game_rbt_react";
 import { type FC } from "react";
 import type { Mode } from "../App.tsx";
+import dancingCat from "../assets/dancing-cat.gif";
 import { naiveClaimChair, naiveJoin, type ChaosLogLine } from "../naive.ts";
 
 // Pull a human-readable message out of a typed abort.
@@ -173,26 +174,33 @@ export const Stage: FC<{
         {/* MUSIC */}
         {s.phase === "MUSIC" && (
           <div className="text-center">
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-5">
               <Equalizer />
             </div>
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
-              {s.active.map((p, i) => (
-                <div
+            <div className="flex justify-center mb-5">
+              <img
+                src={dancingCat}
+                alt="a cat, dancing"
+                className="dancer h-48 rounded-2xl border-2 border-[var(--ink)] shadow-[6px_6px_0_rgba(38,32,29,0.25)]"
+              />
+            </div>
+            <div className="flex flex-wrap justify-center gap-1.5 mb-5 max-h-24 overflow-y-auto px-2">
+              {s.active.map((p) => (
+                <span
                   key={p}
-                  className="dancer text-center"
-                  style={{ animationDelay: `${(i % 4) * 0.15}s` }}
+                  className={`font-mono2 text-[11px] font-bold px-2 py-0.5 rounded-full border ${
+                    p === playerId
+                      ? "bg-[var(--gold-soft)] border-[var(--ink)]"
+                      : "bg-white/60 border-[var(--ink)]/30"
+                  }`}
                 >
-                  <div className="text-4xl">🕺</div>
-                  <div className="font-mono2 text-xs font-bold">
-                    {p === playerId ? `${p} (you)` : p}
-                  </div>
-                </div>
+                  {p === playerId ? `${p} (you)` : p}
+                </span>
               ))}
             </div>
             <p className="font-mono2 text-sm opacity-70">
               chairs are being arranged backstage… when the music stops,{" "}
-              <b>CLICK ONE</b>. {s.active.length} dancing,{" "}
+              <b>TAP ONE</b>. {s.active.length} dancing,{" "}
               {Math.max(s.active.length - 1, 0)} chairs coming.
             </p>
             {!active && (
@@ -206,37 +214,48 @@ export const Stage: FC<{
         {/* SCRAMBLE */}
         {s.phase === "SCRAMBLE" && (
           <div>
-            <p className="text-center font-display text-xl text-[var(--red)] mb-6">
+            <p className="text-center font-display text-xl text-[var(--red)] mb-2">
               {active
                 ? seated
                   ? "😮‍💨 you're seated — watch the panic"
                   : "THE MUSIC STOPPED — SIT DOWN!"
                 : "👀 spectating the scramble"}
             </p>
-            <div className="flex flex-wrap justify-center gap-5">
+            <p className="text-center font-mono2 text-sm font-bold mb-5">
+              <span className="bg-[var(--gold-soft)] border-2 border-[var(--ink)] rounded-lg px-3 py-1">
+                {s.chairs.filter((c) => c.occupants.length === 0).length} of{" "}
+                {s.chairs.length} chairs still open
+              </span>
+            </p>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(5.2rem,1fr))] gap-2 sm:gap-3">
               {s.chairs.map((chair, i) => {
                 const mine = chair.occupants.includes(playerId);
                 const taken = chair.occupants.length > 0;
                 const overbooked = chair.occupants.length > 1;
+                const canTap = active && !seated && (!taken || mode === "naive");
                 return (
                   <button
                     key={chair.chairId}
                     onClick={() => void handleChair(chair.chairId)}
-                    disabled={!active || seated || (taken && mode === "reboot")}
-                    className={`chair-btn chair-appear w-32 rounded-2xl border-2 border-[var(--ink)] p-4 text-center ${
+                    disabled={!canTap}
+                    className={`chair-btn chair-appear rounded-xl border-2 p-2 text-center ${
                       overbooked
                         ? "overbooked bg-[var(--alarm)]/20 border-[var(--alarm)]"
                         : mine
-                          ? "bg-[var(--gold-soft)]"
+                          ? "bg-[var(--gold-soft)] border-[var(--ink)]"
                           : taken
-                            ? "bg-black/5 opacity-70"
-                            : "bg-white shadow-[6px_6px_0_rgba(38,32,29,0.2)]"
+                            ? "bg-black/5 border-[var(--ink)]/30 opacity-45 grayscale"
+                            : "chair-open bg-white border-[var(--ink)]"
                     }`}
-                    style={{ animationDelay: `${i * 0.06}s` }}
+                    style={{ animationDelay: `${Math.min(i * 0.03, 0.6)}s` }}
                   >
-                    <div className="text-5xl mb-1">🪑</div>
-                    <div className="font-mono2 text-xs font-bold min-h-8">
-                      {chair.occupants.length === 0 && "empty"}
+                    <div className="text-3xl leading-none mb-1">🪑</div>
+                    {!taken && (
+                      <div className="font-mono2 text-[10px] font-bold text-[var(--red)]">
+                        TAP!
+                      </div>
+                    )}
+                    <div className="font-mono2 text-[10px] font-bold break-all leading-tight">
                       {chair.occupants.map((occupant) => (
                         <div key={occupant}>
                           {occupant === playerId ? "you!" : occupant}
@@ -244,8 +263,8 @@ export const Stage: FC<{
                       ))}
                     </div>
                     {overbooked && (
-                      <div className="font-mono2 text-[10px] font-bold text-[var(--alarm)]">
-                        💥 {chair.occupants.length} PEOPLE, 1 CHAIR
+                      <div className="font-mono2 text-[9px] font-bold text-[var(--alarm)]">
+                        💥 {chair.occupants.length} ON 1 CHAIR
                       </div>
                     )}
                   </button>

@@ -12,11 +12,11 @@
     background-image: repeating-linear-gradient(-45deg, rgba(215,38,61,.08) 0 40px, transparent 40px 80px);
   }
   h1 { font-size: 56px; color: #d7263d; margin: 0; text-align: center; }
-  h2 { font-size: 22px; color: #147d81; margin: 0; letter-spacing: 2px; }
+  h2 { font-size: 22px; color: #147d81; margin: 0; letter-spacing: 2px; text-align: center; }
   .qr { background: #fff; padding: 24px; border: 4px solid #26201d; border-radius: 24px;
         box-shadow: 12px 12px 0 rgba(38,32,29,.25); }
   .qr img { width: 420px; height: 420px; display: block; image-rendering: pixelated; }
-  .url { font-family: 'JetBrains Mono', monospace; font-size: 26px; background: #26201d;
+  .url { font-family: 'JetBrains Mono', monospace; font-size: 20px; background: #26201d;
          color: #7df9aa; padding: 12px 26px; border-radius: 12px; }
   p { font-family: 'JetBrains Mono', monospace; font-size: 18px; margin: 0; }
 </style>
@@ -24,8 +24,8 @@
 <body>
   <h1>🎪 MUSICAL CHAIRS</h1>
   <h2>SCAN TO PLAY — 10 🪙 A SEAT, WINNER TAKES THE POT</h2>
-  <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAc4AAAHOAQAAAAA5ndQdAAADe0lEQVR4nO2dXW6sMAyFHQ9SH5kddClzd9atMUu5OyiPlQb5Kn8QmDycQaouGc730Cngo5ZQy4ntUGeyk0n3KkUohVDMrAalEIqZ1aAUQjGzGpS+5zCJmX0Xhxf7lpvZQ8R/WHkkBf5kc/eqlCIoZCVnl0r2johczGyY3cn7kUj2HH/NFndq7l6VUgSFrKqcUeo8f+L3N3POfXoH+nFXf/SRw9LorbpD/MI70D2iCKUQeiJp93RmvIrY1I0uRBmRuxOR3t7gXpVSBIWsqpxderMUV1wno/sy+1ni0e/9VBBFDZ+hFEIxs7NLu/RZxpS7sxh6ZHLpqI/TtVXoae5elVIEhayqnE96D8sc59w65qRMm/uwvz7mTNnq2vK97kL3yTyUvucwiW0J2TTP4C/3OeH2BHNrb/onoZSiwzTGRYz/CAFlLt3YI5w0v86ZmQUcYQjFzGpQ2kAl1IqYk0o3Q67nSIw5+aSH9RwYxU23UNqK5wz+RJ9dZi6PWtFmUDQW8LlCKGZWg9KD59Z6WxdyykzbeL0N7vLwJi6l2KaUPuBzhVDMrAalh88QDH5Jk5IB5WwtZgis6GILi594ks8VQjGzGpQ24Dnrqdh6ZWPJV9aW9BwMBe0qUHr4YbrlgBIKOaHfxreoyZRKNzLmes7Xsurhc4VQzKwGpS3EnEslvCzbC/o4aQsTOg9jDoziplsoPXiGYAypAReaBy7mMwRy8T6z4p4b12zqYi8OnyuEYmY1KG0jK/292qYzF3KGTcknqBhzYBQ33ULpwYepN4udave8+WbOn4UjN29FCIuf5FV8rhgK2lWgtIFhskfZbxO2F6SPr5yVdl2skua0AZ8rhGJmNShtYbb2yCe8d6y7BuRZwNkajOKmWyhtrldailcOSE6xLbUees4L6CvGayg9+DCNRSd0t0SZsGnnc8kXLLWe//0L70T3CoVSDD2RtAtfb6k1IPSm2d2XQP1RfB3BkJwlz9ritQbvVSlFUMhKzi6VPAfzpKnYcm3VsBYIb19j39o7/0kopfs8x1abDVI9J/BYTrLjE0Zx0y2UNhVzrOzqXNpuhrxpZ77G5wqhmFkNShvwnERukp4p3kMg6z0H9BwMBe0qUNpAPSdT7M+ZnUSKl00HuM55AX3FeA2lBx4mx/8CgqCQVRVKIRQzq0EphGJmNSiFUMxMTi79B9onlj0lhpmlAAAAAElFTkSuQmCC" alt="QR code" /></div>
-  <div class="url">http://172.30.30.231:9991/__/frontend/web/</div>
-  <p>(same Wi-Fi as the host — each phone is a player)</p>
+  <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAj4AAAI+AQAAAACUST0BAAAEcUlEQVR4nO2dXW7jIBSFwY40j+4OZinOzqrZmbOU7iB5rOTojrj8x6kOiVLTGZ3vxcVglB6D+bkXsGJewnV4TT7GMCMMNcJQIww1wlAjDDX6VzW62MzBGHOyevNorLVvMaHeDIS4xPHH/msvYXhNNoYZNUCxd9TIiMjZzBIwo4gs7v5UhEY5u5SrMWaWMk7Rx1e+NQw1wlCjDrXfOGZXpzVUVW1TfRLiR8B/EsIDrP0tsGRjqNGOGh2+iri8zYsdV9flFw2JdV1+jZvO3/iLBmYEoUYYavScRicrn/a3/LGymsk1+lf75sf9ocv/oSN9nNFTDMwIQo0w1Ki97a8Nf3YU17u3oZl3odMxJrnG+b+pfIhiY6gRhhrtPu7PpHE/vBRw3N8GSzaGGu087p+2Hj++fRcXF0x9oedfxn3PLxqYEYQaYajRg3P+2var4S8M8R3BGrh4i1/uHlQPcM6/BRZIDDXq1fOfnTlPrXqpvk/Z3h+Ne+mBYP/zF741DDXCUKOda7/4Gl42+qG+O4J/zyaJjwvWf9b+FliyMdSoh7fPGJv84NhT9gRWn9KHSs+/7CrItr8BlmwMNerT9p+zW18c4vtGP7v4KsnzL8Ha3wZLNoYa7Tznf3GOfGkm34XUwq9crJr9Ne56mM7J7K+h7/hFAzOCUCMMNWogTOKVE/o5LvX16xVAIS5d2Pa3wQKJoUY9ev7Gd/IrC0BawmOC4S+FcrUPcNzfAEs2hhp1sPiJbCb0lakK1TfTHCDb/jZYsjHUqJ/FryRP/TvS5F/uAhQfAbb9LbBkY6jR7rVfbsb2ZYdgufH20afo5/8Mw1NP3YEZYahR685eR+e975DVXOy76AZfWsMv9l3Khb4b58AYotgYaoShRh19/cbNOGCJ3YNY0avtvujn/wAs2Rhq1M/bR8lT/8n+F5x+whqAMiX9/NthycZQox67eq73JvQrM2BeDZgcAGnvf4jhseRfw4ww1KgB34gXNv1yer92AaqHA0USWvzaYIHEUKMO+/kbP5q3B79Zf7HZ5yy6y99i5FMnBsPkn/2ln4Rw4VtrgSUbQ436rO+fikF9sapvKUx9d8b9sevAt4ahRhhq1G+Fr0lr+DUu9e636/uztw97/q2wZGOoUa/TPMxtfa89fbcfCPr5P8TwWPKvYUYYatTAjeNu2LojTQVO2apXb+sRoZ9/OyyQGGrUwdM3U57dVfn2xm9BGvdX3wm+NQw1wlCj3Xf3MIlxdbt2i9vrY5Z4cMe4uiR6xIe7rOkyL5pgXvjWWmDJxlCj3c/xm+OmHTYc4JdCaVv/9EnIN9MZf+5PvjUMNcJQo/5n+HrqAb+p9v1RshmQPf8GWLIx1KizRiebPwkXv/BPa7h3+tms8vFnevKtYagRhhp1bvuVZOFf7rsEBDQtPX3bYMnGUKMeq3zk/grf82Y5352TfVj722DJxlCjn3KGr9R7/t0u9qlOAONbw1AjDDXaUSO73bPzKa58axhqhKFGGGqEoUYYaoT5jzX6CycYeEMhaOBwAAAAAElFTkSuQmCC" alt="QR code" /></div>
+  <div class="url">https://sphere-dude-climate-nam.trycloudflare.com/__/frontend/web/</div>
+  <p>(works on any network — each phone is a player)</p>
 </body>
 </html>

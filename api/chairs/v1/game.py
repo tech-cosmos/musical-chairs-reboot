@@ -247,7 +247,9 @@ GameMethods = Methods(
         response=None,
         mcp=None,
     ),
-    reset=Writer(
+    # A transaction: it re-reads every player's balance to reconcile
+    # the mint ledger, so a reset always restores a green dashboard.
+    reset=Transaction(
         request=None,
         response=None,
         mcp=None,

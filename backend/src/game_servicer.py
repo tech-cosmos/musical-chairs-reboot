@@ -454,7 +454,7 @@ class GameServicer(Game.Servicer):
 
     async def reset(
         self,
-        context: WriterContext,
+        context: TransactionContext,
     ) -> None:
         s = self.state
         s.players = []
@@ -465,14 +465,22 @@ class GameServicer(Game.Servicer):
         s.game_number += 1
         s.phase = LOBBY
         s.unverified_fees = 0
-        if s.pot > 0:
-            # Burn the orphaned pot and take it off the mint ledger, so
-            # a reset is a genuinely clean slate and the books balance.
+        s.pot = 0
+
+        # Reconcile the books: recount every wallet and restate the
+        # mint ledger, writing off whatever the naive demos vanished or
+        # conjured. A reset always ends with a green dashboard.
+        async def balance(player_id: str) -> int:
+            info = await Player.ref(player_id).get(context)
+            return info.coins
+
+        balances = await asyncio.gather(*[balance(p) for p in s.registered])
+        written_off = s.minted - sum(balances)
+        s.minted = sum(balances)
+        if written_off != 0:
             self._log(
-                f"🧹 Game reset. The house burned the orphaned pot "
-                f"({s.pot} coins)."
+                f"🧹 Game reset. The auditor wrote off {abs(written_off)} "
+                "coins of naive-mode damage. Books are green again."
             )
-            s.minted -= s.pot
-            s.pot = 0
         else:
             self._log("🧹 Game reset. Clean slate.")
