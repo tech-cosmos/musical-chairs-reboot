@@ -5,7 +5,9 @@
 //
 // This file exists to LOSE the demo. `App.tsx` + Reboot win it.
 
-const BASE = import.meta.env.VITE_REBOOT_URL as string;
+// Same-origin as the page (see main.tsx) — works on localhost, LAN
+// IPs, and tunnels alike.
+const BASE = window.location.origin;
 export const GAME_ID = "the-game";
 
 export type ChaosLogLine = {
