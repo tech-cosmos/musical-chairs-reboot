@@ -1,0 +1,15 @@
+[project]
+name = "musical-chairs"
+version = "0.1.0"
+requires-python = ">= 3.10"
+dependencies = [
+    "reboot==1.4.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=7.4.2",
+]
+
+# No `[build-system]` table: this is a virtual (non-package) project —
+# dependencies install into `.venv` but the project itself is never built.

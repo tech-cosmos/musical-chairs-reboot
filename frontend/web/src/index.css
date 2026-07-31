@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:ital,wght@0,400;0,500;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --cream: #f8efdd;
+  --paper: #fffaef;
+  --ink: #26201d;
+  --red: #d7263d;
+  --red-dark: #a3172b;
+  --gold: #f2a007;
+  --gold-soft: #ffd166;
+  --teal: #147d81;
+  --night: #171320;
+  --night-2: #221c30;
+  --neon: #7df9aa;
+  --alarm: #ff5470;
+}
+
+html {
+  background: var(--cream);
+}
+
+body {
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(242, 160, 7, 0.13), transparent 34%),
+    radial-gradient(circle at 88% 16%, rgba(215, 38, 61, 0.1), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(20, 125, 129, 0.08), transparent 45%),
+    var(--cream);
+  min-height: 100vh;
+}
+
+.font-display {
+  font-family: "Bungee", cursive;
+}
+.font-mono2 {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Circus-tent stripes for the header banner. */
+.tent-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--red) 0 26px,
+    var(--red-dark) 26px 30px,
+    var(--paper) 30px 56px,
+    #efe3c8 56px 60px
+  );
+}
+
+/* Marquee bulbs. */
+@keyframes bulb {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px 2px rgba(242, 160, 7, 0.8); }
+  50% { opacity: 0.35; box-shadow: none; }
+}
+.bulb {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--gold-soft);
+  animation: bulb 1.4s infinite;
+}
+
+/* Ticket stubs (players). */
+.ticket {
+  background: var(--paper);
+  border: 2px dashed rgba(38, 32, 29, 0.35);
+  border-radius: 10px;
+  position: relative;
+}
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--cream);
+  border: 2px dashed rgba(38, 32, 29, 0.35);
+  transform: translateY(-50%);
+}
+.ticket::before { left: -9px; }
+.ticket::after { right: -9px; }
+
+/* Equalizer bars while the music plays. */
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq 0.7s ease-in-out infinite;
+}
+
+/* Dancing player chips. */
+@keyframes bounce-dance {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+.dancer {
+  animation: bounce-dance 0.8s ease-in-out infinite;
+}
+
+/* Scramble alert flash. */
+@keyframes alarm-flash {
+  0%, 100% { background-color: var(--red); }
+  50% { background-color: var(--red-dark); }
+}
+.alarm {
+  animation: alarm-flash 0.5s infinite;
+}
+
+/* Chairs. */
+.chair-btn {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.chair-btn:not(:disabled):hover {
+  transform: translateY(-4px) rotate(-2deg) scale(1.04);
+  box-shadow: 0 12px 0 rgba(38, 32, 29, 0.18);
+}
+@keyframes chair-drop {
+  from { transform: translateY(-28px) scale(1.15); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.chair-appear {
+  animation: chair-drop 0.35s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+@keyframes overbook-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px) rotate(-2deg); }
+  60% { transform: translateX(4px) rotate(2deg); }
+}
+.overbooked {
+  animation: overbook-shake 0.4s infinite;
+}
+
+/* Winner banner. */
+@keyframes pop-in {
+  from { transform: scale(0.6) rotate(-6deg); opacity: 0; }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.winner-pop {
+  animation: pop-in 0.5s cubic-bezier(0.2, 1.8, 0.4, 1) both;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-16px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(90px) rotate(340deg); opacity: 0; }
+}
+.confetti {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 12px;
+  animation: confetti-fall 1.6s linear infinite;
+}
+
+/* Chaos lab. */
+.chaos-panel {
+  background:
+    linear-gradient(160deg, rgba(125, 249, 170, 0.05), transparent 40%),
+    var(--night);
+  border: 1px solid rgba(125, 249, 170, 0.25);
+}
+.chaos-log::-webkit-scrollbar {
+  width: 6px;
+}
+.chaos-log::-webkit-scrollbar-thumb {
+  background: rgba(125, 249, 170, 0.3);
+  border-radius: 3px;
+}
+@keyframes ledger-alarm {
+  0%, 100% { border-color: var(--alarm); }
+  50% { border-color: transparent; }
+}
+.ledger-broken {
+  animation: ledger-alarm 0.8s infinite;
+}
+
+/* Event feed items slide in. */
+@keyframes feed-in {
+  from { transform: translateX(14px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.feed-item {
+  animation: feed-in 0.25s ease-out both;
+}
