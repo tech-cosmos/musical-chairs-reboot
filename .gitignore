@@ -15,3 +15,7 @@ node_modules/
 /backend/api/
 /frontend/api/
 /boilerplate/
+
+# Session artifacts.
+/.playwright-mcp/
+/*.png

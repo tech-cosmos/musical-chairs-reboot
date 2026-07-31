@@ -1,5 +1,0 @@
-[      59ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:9991/__/frontend/node_modules/.vite/deps/react-dom_client.js?v=2c3ceeba:17986
-[      85ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:9991/__/oauth/whoami:0
-[      89ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:9991/__/oauth/whoami:0
-[     130ms] [WARNING] [Reboot] 'Player.Create' aborted with rbt.v1alpha1.StateAlreadyConstructed @ http://localhost:9991/__/frontend/api/chairs/v1/player_rbt_react.ts?t=1785472781456:1271
-[     139ms] [WARNING] [Reboot] 'Player.Create' aborted with rbt.v1alpha1.StateAlreadyConstructed @ http://localhost:9991/__/frontend/api/chairs/v1/player_rbt_react.ts?t=1785472781456:1271
